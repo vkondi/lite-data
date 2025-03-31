@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import axios from "axios";
 import {
@@ -31,27 +31,27 @@ const DataSelectorContext = createContext<DataSelectorContextProps | undefined>(
   undefined
 );
 
-export const DataSelectorProvider: FC<PropsWithChildren> = ({
-  children,
-}): JSX.Element => {
+export const DataSelectorProvider: FC<PropsWithChildren> = ({ children }) => {
   const [allowedDataTypes, setAllowedDataTypes] = useState<string[]>([]);
   const [fields, setFields] = useState<FieldData[]>(defaultFields);
 
   const fetchConfig = async () => {
-      try {
-        const response = await axios.get(GET_CONFIG_URL);
-        setAllowedDataTypes(response?.data?.allowedDataTypes ?? []);
-      } catch (error) {
-        console.error("Failed to fetch config:", error);
-      }
-    };
+    try {
+      const response = await axios.get(GET_CONFIG_URL);
+      setAllowedDataTypes(response?.data?.allowedDataTypes ?? []);
+    } catch (error) {
+      console.error("Failed to fetch config:", error);
+    }
+  };
 
   useEffect(() => {
     fetchConfig();
   }, []);
 
   return (
-    <DataSelectorContext.Provider value={{ fields, setFields, allowedDataTypes }}>
+    <DataSelectorContext.Provider
+      value={{ fields, setFields, allowedDataTypes }}
+    >
       {children}
     </DataSelectorContext.Provider>
   );

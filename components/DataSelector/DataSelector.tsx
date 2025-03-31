@@ -23,7 +23,7 @@ const DataSelector: FC = () => {
         i === index ? { ...field, dataType: value, name: value } : field
       )
     );
-  }, []);
+  }, [setFields]);
 
   const onNameChange = useCallback((value: string, index: number) => {
     setFields((prevFields) =>
@@ -31,11 +31,11 @@ const DataSelector: FC = () => {
         i === index ? { ...field, name: value } : field
       )
     );
-  }, []);
+  }, [setFields]);
 
   const onDelete = useCallback((index: number) => {
     setFields((prevFields) => prevFields.filter((_, i) => i !== index));
-  }, []);
+  }, [setFields]);
 
   const handleAddNewRow = () => {
     setFields((prevFields) => [...prevFields, emptyField]);

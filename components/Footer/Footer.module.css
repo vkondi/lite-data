@@ -1,0 +1,9 @@
+.container {
+  background-color: #f0f0f0;
+  padding: 15px 10px;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: end;
+  column-gap: 10px;
+}
+

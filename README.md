@@ -1,36 +1,141 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Lite Data
+
+Lite Data is a full-stack web application built with Next.js for the frontend and Flask for the backend. It provides a modern, responsive user interface powered by React and Material-UI, and a robust backend API built with Flask.
+
+## Table of Contents
+
+- [Features](#features)
+- [Project Structure](#project-structure)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Development](#development)
+  - [Build and Deployment](#build-and-deployment)
+- [Scripts](#scripts)
+- [Technologies Used](#technologies-used)
+- [Testing](#testing)
+- [License](#license)
+
+---
+
+## Features
+
+- **Frontend**: Built with Next.js and React, styled using Material-UI.
+- **Backend**: Flask API for handling server-side logic and data processing.
+- **Testing**: Unit testing with Vitest and React Testing Library.
+- **Linting**: Code linting with ESLint.
+
+---
+
+## Project Structure
+
+```
+├── api/ # Flask backend code 
+├── app/ # Next.js app directory 
+├── components/ # React components 
+├── context/ # React context for state management 
+├── public/ # Static assets 
+├── utils/ # Utility functions 
+├── .next/ # Next.js build output 
+├── package.json # Project metadata and scripts 
+├── requirements.txt # Python dependencies for Flask 
+├── tsconfig.json # TypeScript configuration 
+├── vitest.config.mts # Vitest configuration
+```
+
+
+
+---
+
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Node.js**: Version 18 or higher
+- **Python**: Version 3.10 or higher
+- **npm or yarn**: Comes with Node.js
+- **pip**: Python package manager
+
+### Installation
+
+1. Clone the repository:
+   ```
+   git clone https://github.com/vkondi/lite-data.git
+   cd lite-data
+   ```
+
+2. Install Node.js dependencies:
+   ```
+   yarn install
+   ```
+
+3. Install Python dependencies:
+   ```
+   pip install -r requirements.txt
+   ```
+
+### Development
+
+To start the development servers for both the frontend and backend:
+   ```
+   yarn dev
+   ```
+
+- The Next.js frontend will run on http://localhost:3000.
+- The Flask backend will run on http://localhost:5328.
+
+### Build and Deployment
+To build the Next.js application for production:
+```
+yarn build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+To start the production server:
+```
+yarn start
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Scripts
+The following scripts are defined in the package.json file:
 
-## Learn More
+- `yarn flask-dev`: Installs Python dependencies and starts the Flask development server.
+- `yarn next-dev`: Starts the Next.js development server with Turbopack.
+- `yarn dev`: Runs both the frontend and backend concurrently.
+- `yarn build`: Builds the Next.js application for production.
+- `yarn start`: Starts the production server.
+- `yarn lint`: Runs ESLint to lint the codebase.
+- `yarn test`: Runs unit tests using Vitest.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Technologies Used
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+#### Frontend
+- **Next.js**: React framework for server-side rendering and static site generation.
+- **React**: JavaScript library for building user interfaces.
+- **Material-UI**: Component library for styling.
 
-## Deploy on Vercel
+#### Backend
+- **Flask**: Lightweight Python web framework.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+#### Testing
+- **Vitest**: Unit testing framework.
+- **React Testing Library**: Testing utilities for React components.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+---
+
+### Testing
+To run the test suite:
+```
+yarn test
+```
+
+---
+
+### License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+

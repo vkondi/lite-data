@@ -18,7 +18,7 @@ export type FieldData = {
   name: string;
 };
 
-type DataSelectorContextProps = {
+export type DataSelectorContextProps = {
   fields: FieldData[];
   setFields: Dispatch<SetStateAction<FieldData[]>>;
   allowedDataTypes: string[];

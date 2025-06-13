@@ -13,7 +13,7 @@
  * @returns A footer element containing a Generate button that triggers data generation when clicked
  */
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Button from "@mui/material/Button";
 import { useTheme } from "@mui/material/styles";
 import { useMediaQuery, FormControl, InputLabel, Select, MenuItem, TextField, Snackbar, Alert, Box, SelectChangeEvent } from "@mui/material";
@@ -68,7 +68,7 @@ const Footer: React.FC = () => {
       setSnackbarMessage("Data generated successfully!");
       setSnackbarSeverity("success");
       setOpenSnackbar(true);
-    } catch (error) {
+    } catch {
       setSnackbarMessage("Error generating data. Please try again.");
       setSnackbarSeverity("error");
       setOpenSnackbar(true);

@@ -1,6 +1,10 @@
+'use client';
+
 import { type FC, useCallback, useMemo } from "react";
 import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
+import { useTheme } from "@mui/material/styles";
+import { useMediaQuery } from "@mui/material";
 
 import Layout from "../Layout/Layout";
 import DataSelectorField from "./DataSelectorField";
@@ -15,6 +19,8 @@ import {
 const emptyField: FieldData = { dataType: "", name: "" };
 
 const DataSelector: FC = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const { fields, setFields } = useDataSelectorContext();
 
   const onTypeChange = useCallback((value: string, index: number) => {
@@ -65,7 +71,14 @@ const DataSelector: FC = () => {
             data-testid="add-new-row-button"
             variant="contained"
             startIcon={<AddIcon />}
-            sx={{ width: 180, margin: "20px 0px 10px 0px" }}
+            sx={{
+              width: isMobile ? "100%" : 180,
+              margin: "20px 0px 10px 0px",
+              backgroundColor: theme.palette.primary.main,
+              '&:hover': {
+                backgroundColor: theme.palette.primary.dark,
+              },
+            }}
             onClick={handleAddNewRow}
           >
             Add New Row

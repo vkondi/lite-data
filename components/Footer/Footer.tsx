@@ -1,3 +1,5 @@
+'use client';
+
 /**
  * A footer component that contains a Generate button for data generation.
  * The button is disabled when any field in the data selector context has an empty name or data type.
@@ -13,17 +15,12 @@
 
 import { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
-
+import { useTheme } from "@mui/material/styles";
+import { useMediaQuery, FormControl, InputLabel, Select, MenuItem, TextField, Snackbar, Alert, Box, SelectChangeEvent } from "@mui/material";
 import { useDataSelectorContext } from "../../context/DataSelectorContext";
-
 import styles from "./Footer.module.css";
 import axios from "axios";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-import TextField from "@mui/material/TextField";
 import { EXPORT_URL } from "../../utils/URL";
-import Snackbar from "@mui/material/Snackbar";
-import Alert from "@mui/material/Alert";
 
 const FILE_FORMAT_OPTIONS = [
   { id: "csv", label: "CSV" },
@@ -34,162 +31,163 @@ const FILE_FORMAT_OPTIONS = [
 ];
 
 const Footer: React.FC = () => {
-  const [showToast, setShowToast] = useState<{
-    severity: "success" | "error" | "warning" | "info";
-    message: string;
-    show: boolean;
-  }>({
-    severity: "success",
-    message: "Data generated successfully!",
-    show: false,
-  });
-  const [loading, setLoading] = useState<boolean>(false);
-  const [countField, setCountField] = useState({
-    count: 10,
-    error: false,
-    helperText: "",
-  });
-  const [fileFormat, setFileFormat] = useState<string>("csv");
-  const [disableGenerate, setDisableGenerate] = useState<boolean>(true);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const { fields } = useDataSelectorContext();
-
-  const onGenerate = async () => {
-    try {
-      setLoading(true);
-
-      const response = await axios.post(
-        EXPORT_URL,
-        {
-          fields,
-          count: countField.count,
-          file_format: fileFormat,
-        },
-        { responseType: "blob" }
-      );
-
-      // Extract filename from Content-Disposition header
-      let fileName = `generated_data_${new Date().getTime()}.${fileFormat}`;
-      const contentDisposition = response?.headers?.["content-disposition"];
-      if (contentDisposition) {
-        const match = contentDisposition.match(/filename="?(.+)"?/);
-        if (match) {
-          fileName = match[1];
-        }
-      }
-
-      const url = window.URL.createObjectURL(new Blob([response.data]));
-      const link = document.createElement("a");
-      link.href = url;
-      link.setAttribute("download", fileName);
-      document.body.appendChild(link);
-      link.click();
-
-      setShowToast({
-        severity: "success",
-        message: "Data generated successfully!",
-        show: true,
-      });
-    } catch (error) {
-      console.error("Error generating data:", error);
-
-      setShowToast({
-        severity: "error",
-        message: "Failed to generate data!",
-        show: true,
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
+  const [fileFormat, setFileFormat] = useState("csv");
+  const [rowCount, setRowCount] = useState("10");
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
+  const [snackbarSeverity, setSnackbarSeverity] = useState<"success" | "error">("success");
 
   const handleFileFormatChange = (event: SelectChangeEvent) => {
-    setFileFormat(event.target.value as string);
+    setFileFormat(event.target.value);
   };
 
-  const handleCountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newCount = parseInt(event.target.value);
+  const handleRowCountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setRowCount(event.target.value);
+  };
 
-    if (newCount <= 1000) {
-      setCountField({
-        ...countField,
-        error: false,
-        helperText: "",
-        count: parseInt(event.target.value),
-      });
-    } else {
-      setCountField({
-        ...countField,
-        error: true,
-        helperText: "Max count is 1000",
-        count: parseInt(event.target.value),
-      });
+  const handleGenerate = async () => {
+    try {
+      const response = await axios.post(EXPORT_URL, {
+        fields,
+        count: parseInt(rowCount),
+        file_format: fileFormat,
+      }, { responseType: 'blob' });
+
+      // Create a download link
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `generated_data.${fileFormat}`);
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+
+      setSnackbarMessage("Data generated successfully!");
+      setSnackbarSeverity("success");
+      setOpenSnackbar(true);
+    } catch (error) {
+      setSnackbarMessage("Error generating data. Please try again.");
+      setSnackbarSeverity("error");
+      setOpenSnackbar(true);
     }
   };
 
-  const handleToastClose = () => {
-    setShowToast({ ...showToast, show: false });
+  const handleCloseSnackbar = () => {
+    setOpenSnackbar(false);
   };
 
-  useEffect(() => {
-    setDisableGenerate(
-      fields.some((field) => field.dataType === "" || field.name === "") ||
-        fields.length === 0
-    );
-  }, [fields]);
+  const isFormValid = fields.every((field) => field.dataType && field.name);
 
-  return (
-    <div className={styles.container}>
+  const renderControls = () => {
+    const controls = [
+      <FormControl 
+        key="format"
+        variant="outlined" 
+        size="small"
+        sx={{ 
+          minWidth: 120,
+          '& .MuiOutlinedInput-root': {
+            '& fieldset': {
+              borderColor: theme.palette.divider,
+            },
+            '&:hover fieldset': {
+              borderColor: theme.palette.primary.main,
+            },
+          },
+        }}
+      >
+        <InputLabel>File Format</InputLabel>
+        <Select
+          value={fileFormat}
+          onChange={handleFileFormatChange}
+          label="File Format"
+        >
+          {FILE_FORMAT_OPTIONS.map((option) => (
+            <MenuItem key={option.id} value={option.id}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>,
+      <TextField
+        key="rows"
+        label="Number of Rows"
+        type="number"
+        value={rowCount}
+        onChange={handleRowCountChange}
+        size="small"
+        sx={{ 
+          width: 150,
+          '& .MuiOutlinedInput-root': {
+            '& fieldset': {
+              borderColor: theme.palette.divider,
+            },
+            '&:hover fieldset': {
+              borderColor: theme.palette.primary.main,
+            },
+          },
+        }}
+      />,
       <Button
-        variant="outlined"
-        onClick={onGenerate}
-        {...(disableGenerate ? { disabled: true } : {})}
-        sx={{ backgroundColor: "#b60f0f", color: "white", border: "0px" }}
-        loading={loading}
-        loadingPosition="start"
+        key="generate"
+        variant="contained"
+        onClick={handleGenerate}
+        disabled={!isFormValid}
+        sx={{
+          backgroundColor: theme.palette.primary.main,
+          '&:hover': {
+            backgroundColor: theme.palette.primary.dark,
+          },
+          '&.Mui-disabled': {
+            backgroundColor: theme.palette.action.disabledBackground,
+            color: theme.palette.action.disabled,
+          },
+        }}
       >
         Generate
       </Button>
+    ];
 
-      <TextField
-        label="Count"
-        variant="outlined"
-        value={countField.count}
-        error={countField.error}
-        helperText={countField.helperText}
-        size="small"
-        onChange={handleCountChange}
-        sx={{ width: 100 }}
-      />
+    if (isMobile) {
+      return (
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+          <Box sx={{ display: 'flex', gap: 2 }}>
+            {controls.slice(0, 2)}
+          </Box>
+          {controls[2]}
+        </Box>
+      );
+    }
 
-      <Select
-        value={fileFormat}
-        label="File Format"
-        onChange={handleFileFormatChange}
-        size="small"
-      >
-        {FILE_FORMAT_OPTIONS.map((option) => (
-          <MenuItem key={option.id} value={option.id}>
-            {option.label}
-          </MenuItem>
-        ))}
-      </Select>
+    return controls;
+  };
 
-      {/* Toast component */}
+  return (
+    <footer className={styles.footer} style={{ backgroundColor: theme.palette.background.paper }}>
+      <div className={styles.footerContent}>
+        <div className={styles.controls}>
+          {renderControls()}
+        </div>
+      </div>
+
       <Snackbar
-        open={showToast.show}
-        autoHideDuration={3000}
-        onClose={handleToastClose}
+        open={openSnackbar}
+        autoHideDuration={6000}
+        onClose={handleCloseSnackbar}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
       >
         <Alert
-          onClose={handleToastClose}
-          severity={showToast.severity}
-          variant="filled"
+          onClose={handleCloseSnackbar}
+          severity={snackbarSeverity}
           sx={{ width: "100%" }}
         >
-          {showToast.message}
+          {snackbarMessage}
         </Alert>
       </Snackbar>
-    </div>
+    </footer>
   );
 };
 

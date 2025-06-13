@@ -1,3 +1,5 @@
+'use client';
+
 /**
  * DataSelectorField component allows users to select a data type and provide a name for the field.
  * It also provides an option to delete the field.
@@ -20,6 +22,8 @@ import MenuItem from "@mui/material/MenuItem";
 import TextField from "@mui/material/TextField";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { useTheme } from "@mui/material/styles";
+import { useMediaQuery, Paper, Box, Typography } from "@mui/material";
 
 import styles from "./DataSelectorField.module.css";
 import FormControl from "@mui/material/FormControl";
@@ -64,6 +68,8 @@ const DataSelectorField: React.FC<DataTypeFieldProps> = ({
   dataTypeValue,
   nameValue,
 }) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const { allowedDataTypes } = useDataSelectorContext();
   
   const handleDelete = () => {
@@ -91,9 +97,84 @@ const DataSelectorField: React.FC<DataTypeFieldProps> = ({
     ));
   };
 
+  if (isMobile) {
+    return (
+      <Paper 
+        elevation={0}
+        sx={{ 
+          p: 2, 
+          mb: 2,
+          backgroundColor: theme.palette.background.paper,
+          border: `1px solid ${theme.palette.divider}`,
+          borderRadius: 2,
+        }}
+      >
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+          <Typography variant="subtitle2" sx={{ color: theme.palette.text.secondary }}>
+            Field {index + 1}
+          </Typography>
+          <IconButton
+            aria-label="delete"
+            size="small"
+            onClick={handleDelete}
+            data-testid="delete-button"
+            sx={{
+              color: theme.palette.error.main,
+              '&:hover': {
+                backgroundColor: theme.palette.error.light,
+                color: theme.palette.error.contrastText,
+              },
+            }}
+          >
+            <DeleteIcon fontSize="small" />
+          </IconButton>
+        </Box>
+        <FormControl 
+          fullWidth
+          variant="outlined" 
+          size="small"
+          sx={{ mb: 2 }}
+        >
+          <InputLabel>Data Type</InputLabel>
+          <Select
+            value={dataTypeValue}
+            label="Data Type"
+            onChange={handleTypeChange}
+            data-testid="data-selector-field"
+          >
+            {renderMenuItems()}
+          </Select>
+        </FormControl>
+        <TextField
+          fullWidth
+          label="Field Name"
+          variant="outlined"
+          value={nameValue}
+          onChange={handleNameChange}
+          size="small"
+          data-testid="name-input"
+        />
+      </Paper>
+    );
+  }
+
   return (
     <div className={styles.container}>
-      <FormControl variant="outlined" sx={{ flex: 1 }} size="small">
+      <FormControl 
+        variant="outlined" 
+        sx={{ 
+          flex: 1,
+          '& .MuiOutlinedInput-root': {
+            '& fieldset': {
+              borderColor: theme.palette.divider,
+            },
+            '&:hover fieldset': {
+              borderColor: theme.palette.primary.main,
+            },
+          },
+        }} 
+        size="small"
+      >
         <InputLabel data-testid="data-type-input" id="demo-simple-select-label">
           Data Type
         </InputLabel>
@@ -113,7 +194,17 @@ const DataSelectorField: React.FC<DataTypeFieldProps> = ({
         id="outlined-basic"
         label="Field Name"
         variant="outlined"
-        sx={{ flex: 1 }}
+        sx={{ 
+          flex: 1,
+          '& .MuiOutlinedInput-root': {
+            '& fieldset': {
+              borderColor: theme.palette.divider,
+            },
+            '&:hover fieldset': {
+              borderColor: theme.palette.primary.main,
+            },
+          },
+        }}
         onChange={handleNameChange}
         value={nameValue}
         size="small"
@@ -123,6 +214,13 @@ const DataSelectorField: React.FC<DataTypeFieldProps> = ({
         size="small"
         onClick={handleDelete}
         data-testid="delete-button"
+        sx={{
+          color: theme.palette.error.main,
+          '&:hover': {
+            backgroundColor: theme.palette.error.light,
+            color: theme.palette.error.contrastText,
+          },
+        }}
       >
         <DeleteIcon fontSize="inherit" />
       </IconButton>

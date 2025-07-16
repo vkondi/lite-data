@@ -8,10 +8,12 @@ import Footer from "@/components/Footer/Footer";
 export default function Home() {
 
   return (
-    <div className={styles.container}>
+    <>
       <Header />
-      <DataSelector />
-      <Footer />
-    </div>
+      <div className={styles.container}>
+        <DataSelector />
+        <Footer />
+      </div>
+    </>
   );
 }

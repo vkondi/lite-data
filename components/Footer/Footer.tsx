@@ -172,7 +172,12 @@ const Footer: React.FC = () => {
           {renderControls()}
         </div>
       </div>
-
+      <div style={{ width: '100%', margin: '16px 0 0 0', display: 'flex', justifyContent: 'center' }}>
+        <hr style={{ border: 0, borderTop: `2px solid ${theme.palette.mode === 'dark' ? theme.palette.grey[700] : theme.palette.grey[300]}`, width: '10%', margin: 0, borderRadius: 2 }} />
+      </div>
+      <div className={styles.copyright} style={{ textAlign: 'center', marginTop: '0.5rem', color: theme.palette.text.secondary, fontSize: '0.7rem' }}>
+        Copyright &copy; {new Date().getFullYear()} Vishwajeet Kondi
+      </div>
       <Snackbar
         open={openSnackbar}
         autoHideDuration={6000}

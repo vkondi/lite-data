@@ -7,6 +7,12 @@
     border-bottom: 1px solid black;
 }
 
+@media (max-width: 600px) {
+  .container {
+    margin-bottom: 16px;
+  }
+}
+
 .deleteIconSpacer {
     height: 40px;
     width: 28px;

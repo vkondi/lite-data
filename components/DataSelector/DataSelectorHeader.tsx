@@ -15,6 +15,7 @@ const DataSelectorHeader: React.FC = () => {
         p: 2, 
         backgroundColor: theme.palette.background.paper,
         borderBottom: `1px solid ${theme.palette.divider}`,
+        mb: 2,
       }}>
         <Typography variant="h6" sx={{ mb: 2, color: theme.palette.text.primary }}>
           Data Fields

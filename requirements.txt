@@ -1,5 +1,5 @@
 Flask==3.1.1
-flask-cors==5.0.1
+flask-cors==6.0.0
 pydantic==2.10.5
 faker==33.3.1
 pandas==2.2.3

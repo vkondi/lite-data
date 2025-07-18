@@ -93,15 +93,15 @@ export default function RootLayout({
             <DataSelectorProvider>{children}</DataSelectorProvider>
           </ThemeWrapper>
         </ThemeProvider>
-      </body>
 
-      {/* Cloudflare Web Analytics */}
-      <script
-        defer
-        src="https://static.cloudflareinsights.com/beacon.min.js"
-        data-cf-beacon={`{"token": "${token}"}`}
-      ></script>
-      {/* End Cloudflare Web Analytics */}
+        {/* Cloudflare Web Analytics */}
+        <script
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon={`{"token": "${token}"}`}
+        ></script>
+        {/* End Cloudflare Web Analytics */}
+      </body>
     </html>
   );
 }

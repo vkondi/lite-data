@@ -176,7 +176,7 @@ const Footer: React.FC = () => {
         <hr style={{ border: 0, borderTop: `2px solid ${theme.palette.mode === 'dark' ? theme.palette.grey[700] : theme.palette.grey[300]}`, width: '10%', margin: 0, borderRadius: 2 }} />
       </div>
       <div className={styles.copyright} style={{ textAlign: 'center', marginTop: '0.5rem', color: theme.palette.text.secondary, fontSize: '0.7rem' }}>
-        Copyright &copy; {new Date().getFullYear()} Vishwajeet Kondi
+        Copyright © {new Date().getFullYear()} Vishwajeet Kondi. All rights reserved.
       </div>
       <Snackbar
         open={openSnackbar}

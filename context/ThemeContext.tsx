@@ -24,9 +24,9 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   }, []);
 
   return (
-    <ThemeContext.Provider value={{ mode, toggleColorMode }}>
+    <ThemeContext value={{ mode, toggleColorMode }}>
       {children}
-    </ThemeContext.Provider>
+    </ThemeContext>
   );
 };
 
@@ -36,4 +36,4 @@ export const useThemeContext = () => {
     throw new Error('useThemeContext must be used within a ThemeProvider');
   }
   return context;
-}; 
+};

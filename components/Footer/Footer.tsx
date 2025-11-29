@@ -13,7 +13,7 @@
  * @returns A footer element containing a Generate button that triggers data generation when clicked
  */
 
-import { useState } from "react";
+import { useState, useActionState, useEffect } from "react";
 import Button from "@mui/material/Button";
 import { useTheme } from "@mui/material/styles";
 import { useMediaQuery, FormControl, InputLabel, Select, MenuItem, TextField, Snackbar, Alert, Box, SelectChangeEvent } from "@mui/material";
@@ -30,6 +30,12 @@ const FILE_FORMAT_OPTIONS = [
   { id: "xlsx", label: "XLS/Excel" },
 ];
 
+type ActionState = {
+  message: string;
+  severity: "success" | "error" | null;
+  timestamp: number; // Used to trigger snackbar
+};
+
 const Footer: React.FC = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -37,18 +43,8 @@ const Footer: React.FC = () => {
   const [fileFormat, setFileFormat] = useState("csv");
   const [rowCount, setRowCount] = useState("10");
   const [openSnackbar, setOpenSnackbar] = useState(false);
-  const [snackbarMessage, setSnackbarMessage] = useState("");
-  const [snackbarSeverity, setSnackbarSeverity] = useState<"success" | "error">("success");
 
-  const handleFileFormatChange = (event: SelectChangeEvent) => {
-    setFileFormat(event.target.value);
-  };
-
-  const handleRowCountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setRowCount(event.target.value);
-  };
-
-  const handleGenerate = async () => {
+  const generateDataAction = async (prevState: ActionState, formData: FormData): Promise<ActionState> => {
     try {
       const response = await axios.post(EXPORT_URL, {
         fields,
@@ -65,14 +61,38 @@ const Footer: React.FC = () => {
       link.click();
       link.remove();
 
-      setSnackbarMessage("Data generated successfully!");
-      setSnackbarSeverity("success");
-      setOpenSnackbar(true);
-    } catch {
-      setSnackbarMessage("Error generating data. Please try again.");
-      setSnackbarSeverity("error");
+      return {
+        message: "Data generated successfully!",
+        severity: "success",
+        timestamp: Date.now(),
+      };
+    } catch (error) {
+      return {
+        message: "Error generating data. Please try again.",
+        severity: "error",
+        timestamp: Date.now(),
+      };
+    }
+  };
+
+  const [state, formAction, isPending] = useActionState(generateDataAction, {
+    message: "",
+    severity: null,
+    timestamp: 0,
+  });
+
+  useEffect(() => {
+    if (state.timestamp !== 0 && state.severity) {
       setOpenSnackbar(true);
     }
+  }, [state.timestamp, state.severity]);
+
+  const handleFileFormatChange = (event: SelectChangeEvent) => {
+    setFileFormat(event.target.value);
+  };
+
+  const handleRowCountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setRowCount(event.target.value);
   };
 
   const handleCloseSnackbar = () => {
@@ -104,6 +124,7 @@ const Footer: React.FC = () => {
           value={fileFormat}
           onChange={handleFileFormatChange}
           label="File Format"
+          name="fileFormat"
         >
           {FILE_FORMAT_OPTIONS.map((option) => (
             <MenuItem key={option.id} value={option.id}>
@@ -119,6 +140,7 @@ const Footer: React.FC = () => {
         value={rowCount}
         onChange={handleRowCountChange}
         size="small"
+        name="rowCount"
         sx={{ 
           width: 150,
           '& .MuiOutlinedInput-root': {
@@ -134,8 +156,8 @@ const Footer: React.FC = () => {
       <Button
         key="generate"
         variant="contained"
-        onClick={handleGenerate}
-        disabled={!isFormValid}
+        type="submit"
+        disabled={!isFormValid || isPending}
         sx={{
           backgroundColor: theme.palette.primary.main,
           '&:hover': {
@@ -147,7 +169,7 @@ const Footer: React.FC = () => {
           },
         }}
       >
-        Generate
+        {isPending ? "Generating..." : "Generate"}
       </Button>
     ];
 
@@ -168,9 +190,9 @@ const Footer: React.FC = () => {
   return (
     <footer className={styles.footer} style={{ backgroundColor: theme.palette.background.paper }}>
       <div className={styles.footerContent}>
-        <div className={styles.controls}>
+        <form action={formAction} className={styles.controls}>
           {renderControls()}
-        </div>
+        </form>
       </div>
       <div style={{ width: '100%', margin: '16px 0 0 0', display: 'flex', justifyContent: 'center' }}>
         <hr style={{ border: 0, borderTop: `2px solid ${theme.palette.mode === 'dark' ? theme.palette.grey[700] : theme.palette.grey[300]}`, width: '10%', margin: 0, borderRadius: 2 }} />
@@ -186,10 +208,10 @@ const Footer: React.FC = () => {
       >
         <Alert
           onClose={handleCloseSnackbar}
-          severity={snackbarSeverity}
+          severity={state.severity || "success"}
           sx={{ width: "100%" }}
         >
-          {snackbarMessage}
+          {state.message}
         </Alert>
       </Snackbar>
     </footer>

@@ -49,11 +49,11 @@ export const DataSelectorProvider: FC<PropsWithChildren> = ({ children }) => {
   }, []);
 
   return (
-    <DataSelectorContext.Provider
+    <DataSelectorContext
       value={{ fields, setFields, allowedDataTypes }}
     >
       {children}
-    </DataSelectorContext.Provider>
+    </DataSelectorContext>
   );
 };
 

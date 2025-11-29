@@ -44,7 +44,7 @@ const Footer: React.FC = () => {
   const [rowCount, setRowCount] = useState("10");
   const [openSnackbar, setOpenSnackbar] = useState(false);
 
-  const generateDataAction = async (prevState: ActionState, formData: FormData): Promise<ActionState> => {
+  const generateDataAction = async (): Promise<ActionState> => {
     try {
       const response = await axios.post(EXPORT_URL, {
         fields,
@@ -67,6 +67,8 @@ const Footer: React.FC = () => {
         timestamp: Date.now(),
       };
     } catch (error) {
+      console.error("Error generating data:", error);
+      
       return {
         message: "Error generating data. Please try again.",
         severity: "error",

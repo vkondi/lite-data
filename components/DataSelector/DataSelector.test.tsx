@@ -1,7 +1,7 @@
 import { render } from "../../utils/test-utils";
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import DataSelector from "./DataSelector";
-import { DataSelectorContextProps, useDataSelectorContext } from '../../context/DataSelectorContext';
+import { useDataSelectorContext } from '../../context/DataSelectorContext';
 
 // Mock the context but keep the provider
 vi.mock('../../context/DataSelectorContext', async (importOriginal) => {

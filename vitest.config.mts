@@ -8,5 +8,16 @@ export default defineConfig({
     globals: true,
     environment: "jsdom",
     setupFiles: "./vitest.setup.ts",
+    coverage: {
+      exclude: [
+        '**/next.config.ts',
+        '**/metadata.ts',
+        '**/test-utils.tsx',
+        // Default exclusions
+        'node_modules/**',
+        '**/*.test.{ts,tsx}',
+        '**/*.spec.{ts,tsx}',
+      ],
+    },
   },
 });

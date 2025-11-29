@@ -6,7 +6,7 @@ exports[`DataSelectorHeader > renders without crashing 1`] = `
     class="_container_85dd28"
   >
     <div
-      class="MuiFormControl-root css-vav2vq-MuiFormControl-root"
+      class="MuiFormControl-root css-1l6m80f-MuiFormControl-root"
     >
       <label
         class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined css-19qnlrw-MuiFormLabel-root-MuiInputLabel-root"
@@ -16,7 +16,7 @@ exports[`DataSelectorHeader > renders without crashing 1`] = `
       </label>
     </div>
     <div
-      class="MuiFormControl-root css-vav2vq-MuiFormControl-root"
+      class="MuiFormControl-root css-1l6m80f-MuiFormControl-root"
     >
       <label
         class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined css-19qnlrw-MuiFormLabel-root-MuiInputLabel-root"

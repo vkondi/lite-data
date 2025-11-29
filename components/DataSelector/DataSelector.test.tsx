@@ -1,19 +1,25 @@
-import { render } from "@testing-library/react";
+import { render } from "../../utils/test-utils";
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import DataSelector from "./DataSelector";
-import { DataSelectorContextProps, useDataSelectorContext } from '../../context/DataSelectorContext';
+import { useDataSelectorContext } from '../../context/DataSelectorContext';
 
-// Mock the context
-vi.mock('../../context/DataSelectorContext', () => ({
-  useDataSelectorContext: vi.fn()
-}));
+// Mock the context but keep the provider
+vi.mock('../../context/DataSelectorContext', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('../../context/DataSelectorContext')>();
+  return {
+    ...actual,
+    useDataSelectorContext: vi.fn()
+  };
+});
 
 describe("DataSelector", () => {
-  const mockFields = [{ field1: 'value1' }];
+  const mockFields = [{ dataType: 'name', name: 'Field 1' }];
 
   beforeEach(() => {
-    (useDataSelectorContext as unknown as DataSelectorContextProps).mockReturnValue({
-      fields: mockFields
+    (useDataSelectorContext as unknown as ReturnType<typeof vi.fn>).mockReturnValue({
+      fields: mockFields,
+      setFields: vi.fn(),
+      allowedDataTypes: ['name', 'number']
     });
   });
 

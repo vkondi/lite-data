@@ -27,9 +27,9 @@ export const metadata: Metadata = {
     url: "https://lite-data.vercel.app/",
     images: [
       {
-        url: "https://lite-data.vercel.app/thumbnail.png",
-        width: 1697,
-        height: 866,
+        url: "https://lite-data.vercel.app/android-chrome-512x512.png",
+        width: 512,
+        height: 512,
         alt: "Lite Data",
       },
     ],
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     title: "Lite Data",
     description:
       "Instantly create and export custom datasets with a fast, easy-to-use web app.",
-    images: ["https://lite-data.vercel.app/thumbnail.png"],
+    images: ["https://lite-data.vercel.app/android-chrome-512x512.png"],
   },
 };
 

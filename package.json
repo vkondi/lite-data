@@ -19,7 +19,7 @@
     "@mui/material": "^6.4.0",
     "axios": "^1.13.5",
     "concurrently": "^9.1.2",
-    "next": "16.1.5",
+    "next": "16.1.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

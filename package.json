@@ -15,11 +15,11 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
-    "@mui/icons-material": "^9.1.1",
-    "@mui/material": "^9.1.2",
+    "@mui/icons-material": "^9.2.0",
+    "@mui/material": "^9.2.0",
     "axios": "^1.18.1",
     "concurrently": "^10.0.3",
-    "next": "16.2.9",
+    "next": "16.2.10",
     "react": "^19.2.7",
     "react-dom": "^19.2.7"
   },
@@ -32,12 +32,12 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@vitejs/plugin-react": "^6.0.3",
-    "@vitest/coverage-v8": "4.1.9",
+    "@vitest/coverage-v8": "4.1.10",
     "eslint": "^10",
-    "eslint-config-next": "16.2.9",
+    "eslint-config-next": "16.2.10",
     "jsdom": "^29.1.1",
     "typescript": "^6",
     "vite-tsconfig-paths": "^6.1.1",
-    "vitest": "^4.1.9"
+    "vitest": "^4.1.10"
   }
 }

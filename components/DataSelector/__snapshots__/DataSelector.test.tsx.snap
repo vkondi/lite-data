@@ -3,54 +3,54 @@
 exports[`DataSelector > renders without crashing 1`] = `
 <div>
   <div
-    class="_container_3fad0d"
+    class="_container_2c7adc"
   >
     <div
-      class="_layout_1d32f9"
+      class="_layout_114a38"
     >
       <div
-        class="_content_1d32f9"
+        class="_content_114a38"
         style="padding: 32px; max-width: 1200px; margin: 0px auto;"
       >
         <div
-          class="_layoutContainer_3fad0d"
+          class="_layoutContainer_2c7adc"
         >
           <div
-            class="_container_85dd28"
+            class="_container_d06ca8"
           >
             <div
-              class="MuiFormControl-root css-1l6m80f-MuiFormControl-root"
+              class="MuiFormControl-root css-lhcvfo-MuiFormControl-root"
             >
               <label
-                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined css-19qnlrw-MuiFormLabel-root-MuiInputLabel-root"
+                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined css-11cwc9r-MuiFormLabel-root-MuiInputLabel-root"
                 data-shrink="false"
               >
                 Data Type
               </label>
             </div>
             <div
-              class="MuiFormControl-root css-1l6m80f-MuiFormControl-root"
+              class="MuiFormControl-root css-lhcvfo-MuiFormControl-root"
             >
               <label
-                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined css-19qnlrw-MuiFormLabel-root-MuiInputLabel-root"
+                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined css-11cwc9r-MuiFormLabel-root-MuiInputLabel-root"
                 data-shrink="false"
               >
                 Field Name
               </label>
             </div>
             <div
-              class="_deleteIconSpacer_85dd28"
+              class="_deleteIconSpacer_d06ca8"
               data-testid="delete-icon-spacer"
             />
           </div>
           <div
-            class="_container_d7ae1f"
+            class="_container_31227a"
           >
             <div
-              class="MuiFormControl-root css-1l6m80f-MuiFormControl-root"
+              class="MuiFormControl-root css-lhcvfo-MuiFormControl-root"
             >
               <label
-                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeSmall MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeSmall MuiInputLabel-outlined css-hvjq6j-MuiFormLabel-root-MuiInputLabel-root"
+                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeSmall MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeSmall MuiInputLabel-outlined css-fvfvjf-MuiFormLabel-root-MuiInputLabel-root"
                 data-shrink="true"
                 data-testid="data-type-input"
                 id="demo-simple-select-label"
@@ -58,14 +58,14 @@ exports[`DataSelector > renders without crashing 1`] = `
                 Data Type
               </label>
               <div
-                class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall MuiSelect-root css-sc8y68-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"
+                class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall MuiSelect-root css-pq298w-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"
                 data-testid="data-selector-field"
               >
                 <div
                   aria-expanded="false"
                   aria-haspopup="listbox"
-                  aria-labelledby="demo-simple-select-label demo-simple-select"
-                  class="MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall css-si86to-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
+                  aria-labelledby="demo-simple-select-label"
+                  class="MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input css-1vjigll-MuiNativeSelect-root-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
                   id="demo-simple-select"
                   role="combobox"
                   tabindex="0"
@@ -76,12 +76,13 @@ exports[`DataSelector > renders without crashing 1`] = `
                   aria-hidden="true"
                   aria-invalid="false"
                   class="MuiSelect-nativeInput css-j0riat-MuiSelect-nativeInput"
+                  id="_r_2_"
                   tabindex="-1"
                   value="name"
                 />
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconOutlined css-lohd6h-MuiSvgIcon-root-MuiSelect-icon"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon css-1rfqz7c-MuiSvgIcon-root-MuiNativeSelect-root-MuiSelect-icon"
                   data-testid="ArrowDropDownIcon"
                   focusable="false"
                   viewBox="0 0 24 24"
@@ -92,10 +93,10 @@ exports[`DataSelector > renders without crashing 1`] = `
                 </svg>
                 <fieldset
                   aria-hidden="true"
-                  class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+                  class="MuiOutlinedInput-notchedOutline css-18p5xg2-MuiNotchedOutlined-root-MuiOutlinedInput-notchedOutline"
                 >
                   <legend
-                    class="css-w1u3ce"
+                    class="css-ex8a5f-MuiNotchedOutlined-root"
                   >
                     <span>
                       Data Type
@@ -105,11 +106,11 @@ exports[`DataSelector > renders without crashing 1`] = `
               </div>
             </div>
             <div
-              class="MuiFormControl-root MuiTextField-root css-1ihgzk2-MuiFormControl-root-MuiTextField-root"
+              class="MuiFormControl-root MuiTextField-root css-1hyqeih-MuiFormControl-root-MuiTextField-root"
               data-testid="name-input"
             >
               <label
-                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeSmall MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeSmall MuiInputLabel-outlined css-hvjq6j-MuiFormLabel-root-MuiInputLabel-root"
+                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeSmall MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeSmall MuiInputLabel-outlined css-fvfvjf-MuiFormLabel-root-MuiInputLabel-root"
                 data-shrink="true"
                 for="outlined-basic"
                 id="outlined-basic-label"
@@ -117,21 +118,21 @@ exports[`DataSelector > renders without crashing 1`] = `
                 Field Name
               </label>
               <div
-                class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-quhxjy-MuiInputBase-root-MuiOutlinedInput-root"
+                class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-1uij4qm-MuiInputBase-root-MuiOutlinedInput-root"
               >
                 <input
                   aria-invalid="false"
-                  class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall css-1pzfmz2-MuiInputBase-input-MuiOutlinedInput-input"
+                  class="MuiInputBase-input MuiOutlinedInput-input css-1pzfmz2-MuiInputBase-input-MuiOutlinedInput-input"
                   id="outlined-basic"
                   type="text"
                   value="Field 1"
                 />
                 <fieldset
                   aria-hidden="true"
-                  class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+                  class="MuiOutlinedInput-notchedOutline css-18p5xg2-MuiNotchedOutlined-root-MuiOutlinedInput-notchedOutline"
                 >
                   <legend
-                    class="css-w1u3ce"
+                    class="css-ex8a5f-MuiNotchedOutlined-root"
                   >
                     <span>
                       Field Name
@@ -142,7 +143,7 @@ exports[`DataSelector > renders without crashing 1`] = `
             </div>
             <button
               aria-label="delete"
-              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-1iv8yb0-MuiButtonBase-root-MuiIconButton-root"
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-15yxk52-MuiButtonBase-root-MuiIconButton-root"
               data-testid="delete-button"
               tabindex="0"
               type="button"
@@ -161,13 +162,13 @@ exports[`DataSelector > renders without crashing 1`] = `
             </button>
           </div>
           <button
-            class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-x8a3z0-MuiButtonBase-root-MuiButton-root"
+            class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-sizeMedium MuiButton-colorPrimary css-lq4w2a-MuiButtonBase-root-MuiButton-root"
             data-testid="add-new-row-button"
             tabindex="0"
             type="button"
           >
             <span
-              class="MuiButton-icon MuiButton-startIcon MuiButton-iconSizeMedium css-1sh91j5-MuiButton-startIcon"
+              class="MuiButton-icon MuiButton-startIcon css-1lxyhll-MuiButton-startIcon"
             >
               <svg
                 aria-hidden="true"

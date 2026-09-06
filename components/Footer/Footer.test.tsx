@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, vi, Mock } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 import Footer from "./Footer";
 import { DataSelectorContextProps, useDataSelectorContext } from "../../context/DataSelectorContext";
@@ -6,24 +6,30 @@ import { DataSelectorContextProps, useDataSelectorContext } from "../../context/
 // Mock the context
 vi.mock("../../context/DataSelectorContext");
 
+const mockUseDataSelectorContext = useDataSelectorContext as Mock<typeof useDataSelectorContext>;
+
 describe("Footer", () => {
   it("renders Generate button", () => {
-    (useDataSelectorContext as unknown as DataSelectorContextProps).mockReturnValue({ fields: [] });
+    mockUseDataSelectorContext.mockReturnValue({ fields: [], setFields: vi.fn(), allowedDataTypes: [] });
     render(<Footer />);
     expect(screen.getByText("Generate")).toBeInTheDocument();
   });
 
   it("disables Generate button when fields are invalid", () => {
-    (useDataSelectorContext as unknown as DataSelectorContextProps).mockReturnValue({
+    mockUseDataSelectorContext.mockReturnValue({
       fields: [{ dataType: "", name: "test" }],
+      setFields: vi.fn(),
+      allowedDataTypes: [],
     });
     render(<Footer />);
     expect(screen.getByText("Generate")).toBeDisabled();
   });
 
   it("enables Generate button when all fields are valid", () => {
-    (useDataSelectorContext as unknown as DataSelectorContextProps).mockReturnValue({
+    mockUseDataSelectorContext.mockReturnValue({
       fields: [{ dataType: "string", name: "test" }],
+      setFields: vi.fn(),
+      allowedDataTypes: [],
     });
     render(<Footer />);
     expect(screen.getByText("Generate")).not.toBeDisabled();
@@ -31,7 +37,7 @@ describe("Footer", () => {
 
   it("calls onGenerate when clicking Generate button", () => {
     const mockFields = [{ dataType: "string", name: "test" }];
-    (useDataSelectorContext as unknown as DataSelectorContextProps).mockReturnValue({ fields: mockFields });
+    mockUseDataSelectorContext.mockReturnValue({ fields: mockFields, setFields: vi.fn(), allowedDataTypes: [] });
 
     render(<Footer />);
     fireEvent.click(screen.getByText("Generate"));

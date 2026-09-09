@@ -21,7 +21,7 @@
     "@mui/material": "^9.4.0",
     "axios": "^1.20.0",
     "concurrently": "^10.0.5",
-    "next": "16.3.3",
+    "next": "16.3.4",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
   },
@@ -36,12 +36,12 @@
     "@types/react-dom": "^19",
     "@typescript-eslint/parser": "^8.69.0",
     "@vitejs/plugin-react": "^6.1.1",
-    "@vitest/coverage-v8": "4.1.11",
+    "@vitest/coverage-v8": "5.0.0",
     "eslint": "^10",
-    "eslint-config-next": "16.3.3",
+    "eslint-config-next": "16.3.4",
     "jsdom": "^30.0.1",
-    "typescript": "^6",
+    "typescript": "^7",
     "vite-tsconfig-paths": "^6.1.1",
-    "vitest": "^4.1.11"
+    "vitest": "^5.0.0"
   }
 }
